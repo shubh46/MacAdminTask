@@ -1,0 +1,86 @@
+<h4 *ngIf="!showlist" (click)="showListofProjects()" style="margin-left: 800px; margin-top: 20px">See Saved Products</h4>
+<h4 *ngIf="showlist" (click)="showListofProjects()" style="margin-left: 800px; margin-top: 20px">Go to add Items</h4>
+<div *ngIf="!showlist" class="main">
+  <h2>Add Products</h2>
+  <form class="">
+    <div class="form-group col-md-4 mb-3">
+      <label for="firstName">Product Name</label>
+      <input type="text" [(ngModel)]="obj.name" name="name" class="form-control" />
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <label for="lastName">Cost</label>
+      <input type="text" [(ngModel)]="obj.cost" name="cost" class="form-control" />
+
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <label for="username">Category</label>
+      <input type="text" [(ngModel)]="obj.category" name="category" class="form-control" />
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <label for="password">Sub Category</label>
+      <input type="text" [(ngModel)]="obj.subcategory" name="subcategory" class="form-control" />
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <label for="password">Size</label>
+      <input type="text" [(ngModel)]="obj.size" name="size" class="form-control" />
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <label for="text">Images</label>
+      <button (click)="attachmentUpload()" style="margin-left: 20px" class="upload-submission-btn">Upload
+        Attachments</button>
+    </div>
+    <div class="form-group col-md-4 mb-3">
+      <button (click)="addProducts()" class="btn btn-primary">Add Products</button>
+
+      <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="showlist">
+  <div class="container">
+    <h3 class="h3">Saved Items</h3>
+    <div class="row">
+      <div *ngFor="let data of productsData" class="col-md-3 col-sm-6">
+        <div class="product-grid">
+          <div class="product-image">
+            {{data.name }}
+          </div>
+          <div>{{data.category}}
+          </div>
+          <div>{{data.subcategory}}
+          </div>
+          <!-- <div><button (click)="showImages()">view images </button>
+          </div> -->
+          <div class="product-content">
+            <div class="price">₹ {{data.cost}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
